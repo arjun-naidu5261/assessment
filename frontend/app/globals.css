@@ -1,0 +1,100 @@
+@import "tailwindcss";
+
+/* Light theme: white / black / light yellow — readable & institutional */
+:root {
+  --bg-deep: #f8f8f6;
+  --bg: #ffffff;
+  --surface: #ffffff;
+  --surface-hover: #fffef8;
+  --elevated: #fffbeb;
+  --border: rgba(0, 0, 0, 0.08);
+  --border-strong: rgba(0, 0, 0, 0.14);
+  --text: #0a0a0a;
+  --text-secondary: #404040;
+  --muted: #737373;
+  --accent: #fde047;
+  --accent-muted: #fef9c3;
+  --accent-soft: rgba(253, 224, 71, 0.35);
+  --accent-text: #854d0e;
+  --depth: #171717;
+  --depth-soft: rgba(0, 0, 0, 0.06);
+  --success: #15803d;
+  --error: #b91c1c;
+  --warn: #ca8a04;
+  --radius: 14px;
+  --shadow: 0 12px 40px -18px rgba(0, 0, 0, 0.12);
+  --ring: 0 0 0 2px var(--bg), 0 0 0 4px rgba(253, 224, 71, 0.55);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  color: var(--text);
+  background: var(--bg-deep);
+  min-height: 100vh;
+  font-family: var(--font-sans), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.app-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background:
+    radial-gradient(ellipse 90% 60% at 50% -15%, rgba(253, 224, 71, 0.28), transparent 55%),
+    radial-gradient(ellipse 50% 40% at 100% 0%, rgba(254, 249, 195, 0.5), transparent 45%),
+    radial-gradient(ellipse 45% 35% at 0% 100%, rgba(0, 0, 0, 0.03), transparent 50%),
+    var(--bg-deep);
+}
+
+.app-backdrop::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(var(--border) 1px, transparent 1px),
+    linear-gradient(90deg, var(--border) 1px, transparent 1px);
+  background-size: 56px 56px;
+  opacity: 0.45;
+  mask-image: radial-gradient(ellipse 75% 65% at 50% 35%, black 15%, transparent 78%);
+  pointer-events: none;
+}
+
+.font-display {
+  font-family: var(--font-display), ui-serif, Georgia, serif;
+}
+
+.input-field {
+  border-radius: var(--radius);
+  border: 1px solid var(--border-strong);
+  background: var(--bg);
+  padding: 0.65rem 0.85rem;
+  color: var(--text);
+  outline: none;
+  transition:
+    border-color 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+.input-field:focus {
+  border-color: rgba(234, 179, 8, 0.55);
+  box-shadow: var(--ring);
+}
+
+.input-field::placeholder {
+  color: var(--muted);
+}
+
+@media print {
+  .no-print,
+  header,
+  .app-backdrop {
+    display: none !important;
+  }
+  body {
+    background: white !important;
+  }
+}
